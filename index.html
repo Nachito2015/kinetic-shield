@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IronLock Vault V1.0</title>
+    <title>IronLock Vault & Optimizer</title>
     <style>
         body {
             background-color: #ffffff;
@@ -20,6 +20,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
+            z-index: 100;
         }
 
         .language-selector select {
@@ -78,6 +79,19 @@
             display: block;
         }
 
+        /* --- Títulos de Sección Principales --- */
+        .product-family-title {
+            font-size: 2.5rem;
+            margin: 60px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .title-vault { color: #d326ff; border-bottom-color: #d326ff; }
+        .title-opt { color: #00e676; border-bottom-color: #00e676; margin-top: 80px; }
+
         /* --- Sección Premium de Compra (Payhip) --- */
         .pricing-container {
             display: flex;
@@ -130,6 +144,10 @@
             letter-spacing: 1px;
         }
 
+        .purchase-details h2.opt-title {
+            color: #00e676;
+        }
+
         .purchase-details p {
             font-size: 0.95rem;
             color: #ccc;
@@ -151,9 +169,8 @@
             padding-left: 5px;
         }
 
-        .pro-features li {
-            color: #ffca28;
-        }
+        .pro-features li { color: #ffca28; }
+        .opt-features li { color: #00e676; }
 
         .price-tag {
             font-size: 1.8rem;
@@ -182,9 +199,7 @@
             max-width: 280px;
         }
 
-        .payhip-buy-button:hover {
-            transform: translateY(-2px);
-        }
+        .payhip-buy-button:hover { transform: translateY(-2px); }
 
         .purchase-note {
             font-size: 0.75rem !important;
@@ -193,9 +208,10 @@
             margin-bottom: 0 !important;
         }
 
-        /* --- Estilos Standard vs PRO --- */
+        /* --- Estilos Standard vs PRO vs Optimizer --- */
         .edition { font-size: 1.1rem; color: #888; font-weight: normal; }
         .edition-pro { font-size: 1.1rem; color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
+        .edition-opt { font-size: 1.1rem; color: #00e676; }
         .pro-title { color: #ffd700 !important; }
         
         .standard-btn { background: linear-gradient(90deg, #4a5ee8, #3b4bc2); box-shadow: 0 4px 15px rgba(74, 94, 232, 0.4); }
@@ -203,11 +219,20 @@
 
         .pro-btn { background: linear-gradient(90deg, #d326ff, #ff26a5); box-shadow: 0 4px 15px rgba(211, 38, 255, 0.4); }
         .pro-btn:hover { box-shadow: 0 6px 20px rgba(211, 38, 255, 0.6); }
+
+        .opt-btn { background: linear-gradient(90deg, #00e676, #00b259); box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4); }
+        .opt-btn:hover { box-shadow: 0 6px 20px rgba(0, 230, 118, 0.6); }
         
         .pro-tier {
             border: 2px solid #d326ff;
             transform: scale(1.02);
             box-shadow: 0 15px 40px rgba(211, 38, 255, 0.15);
+        }
+
+        .opt-tier {
+            border: 2px solid #00e676;
+            box-shadow: 0 15px 40px rgba(0, 230, 118, 0.15);
+            max-width: 450px; /* Centrado para un solo producto */
         }
 
         .pro-badge {
@@ -216,6 +241,22 @@
             left: 50%;
             transform: translateX(-50%);
             background: linear-gradient(90deg, #d326ff, #ff26a5);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .opt-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #00e676, #00b259);
             color: white;
             padding: 5px 20px;
             border-radius: 20px;
@@ -260,15 +301,9 @@
             margin: 0;
         }
 
-        .pro-card {
-            border: 1px solid #ffd700;
-        }
+        .pro-card { border: 1px solid #ffd700; }
+        .pro-card h3 { color: #ffd700; }
 
-        .pro-card h3 {
-            color: #ffd700;
-        }
-
-        /* Centrar la última tarjeta PRO en pantallas de 3 columnas */
         @media (min-width: 900px) {
             .grid-3 .pro-card:last-child {
                 grid-column: 2 / span 1;
@@ -347,8 +382,12 @@
 
     <div class="container">
 
-        <img src="Logo.png" alt="IronLock Vault Logo" class="logo">
+        <img src="Logo.png" alt="IronLock Logo" class="logo">
 
+        <!-- ========================================== -->
+        <!-- SECCIÓN: IRONLOCK VAULT                    -->
+        <!-- ========================================== -->
+        <h1 class="product-family-title title-vault">IronLock Vault</h1>
         <div class="subtitle-top" data-i18n="subtitle_top">PRIVACY FIRST. 100% OFFLINE SECURITY.</div>
 
         <p class="description" data-i18n="main_desc">
@@ -357,7 +396,6 @@
             your hardware.
         </p>
 
-        <!-- Reproductor de Video Dinámico -->
         <div class="video-wrapper">
             <video id="promoVideo" controls poster="IronLock_Vault_Box.jpg">
                 <source src="VideoIngles.mp4" type="video/mp4">
@@ -365,9 +403,7 @@
             </video>
         </div>
 
-        <!-- Sección de Compra Integrada: Niveles Standard y PRO -->
         <div class="pricing-container">
-            
             <!-- TARJETA STANDARD -->
             <div class="purchase-section standard-tier">
                 <div class="purchase-image">
@@ -398,7 +434,7 @@
                 </div>
             </div>
 
-            <!-- TARJETA PRO (Destacada) -->
+            <!-- TARJETA PRO -->
             <div class="purchase-section pro-tier">
                 <div class="pro-badge" data-i18n="pro_badge">MOST POPULAR / MAX SECURITY</div>
                 <div class="purchase-image">
@@ -421,7 +457,6 @@
                     <div class="price-tag pro-price">
                         $29.00 <span data-i18n="purchase_price_note">USD (One-time payment)</span>
                     </div>
-                    <!-- Enlace actualizado con tu producto PRO de Payhip -->
                     <a href="https://payhip.com/b/oY4EF" target="_blank" class="payhip-buy-button pro-btn" data-i18n="purchase_pro_btn">
                         Acquire PRO License
                     </a>
@@ -430,31 +465,74 @@
                     </p>
                 </div>
             </div>
-
         </div>
 
-        <h2 class="section-title" data-i18n="why_title">Why choose IronLock Vault?</h2>
+        <!-- ========================================== -->
+        <!-- SECCIÓN NUEVA: IRONLOCK OPTIMIZER          -->
+        <!-- ========================================== -->
+        <h1 class="product-family-title title-opt">IronLock Optimizer</h1>
+        
+        <p class="description" data-i18n="opt_main_desc">
+            Maximize your PC's performance safely. IronLock Optimizer cleans junk files, optimizes your registry, and boosts your system's speed while maintaining our strict 100% offline privacy standard.
+        </p>
+
+        <div class="pricing-container">
+            <!-- TARJETA OPTIMIZER -->
+            <div class="purchase-section opt-tier">
+                <div class="opt-badge" data-i18n="opt_badge">NEW RELEASE</div>
+                <div class="purchase-image">
+                    <!-- Imagen extraída del repositorio -->
+                    <img src="ironlock-optimizer-box-en.jpg" alt="IronLock Optimizer Box">
+                </div>
+                <div class="purchase-details">
+                    <h2 class="opt-title">IronLock <span class="edition-opt">OPTIMIZER</span></h2>
+                    <p data-i18n="opt_purchase_desc">
+                        Breathe new life into your system. Get the definitive optimization tool designed for speed, stability, and total privacy without telemetry.
+                    </p>
+                    
+                    <!-- Editar estas características en el script JS según las reales de tu software -->
+                    <ul class="tier-features opt-features">
+                        <li data-i18n="opt_f1">⚡ Limpieza profunda de archivos basura</li>
+                        <li data-i18n="opt_f2">⚡ Optimización de registro segura</li>
+                        <li data-i18n="opt_f3">⚡ Gestor de inicio y procesos</li>
+                        <li data-i18n="opt_f4">⚡ 100% Privado sin telemetría</li>
+                    </ul>
+
+                    <div class="price-tag">
+                        <!-- Ajusta el precio aquí -->
+                        $12.00 <span data-i18n="purchase_price_note">USD (One-time payment)</span>
+                    </div>
+                    <!-- REEMPLAZAR EL LINK DE PAYHIP CON EL CORRECTO DEL OPTIMIZER -->
+                    <a href="https://payhip.com/TU_NUEVO_LINK" target="_blank" class="payhip-buy-button opt-btn" data-i18n="opt_purchase_btn">
+                        Acquire Optimizer License
+                    </a>
+                    <p class="purchase-note" data-i18n="purchase_req">
+                        * Compatible with Windows 10 & 11 (64-bit). Immediate digital delivery.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- ========================================== -->
+
+        <h2 class="section-title" data-i18n="why_title">Why choose IronLock?</h2>
         <div class="grid-3">
             <div class="dark-card">
                 <h3 data-i18n="why_1_title">Total Isolation (Zero-Cloud)</h3>
-                <p data-i18n="why_1_desc">Unlike the competition, IronLock Vault does not connect to the internet. There are
+                <p data-i18n="why_1_desc">Unlike the competition, IronLock software does not connect to the internet. There are
                     no hackable "automatic cloud backups" or telemetry. Your data never leaves your hard drive.</p>
             </div>
             <div class="dark-card">
                 <h3 data-i18n="why_2_title">One-Time Payment. No Subscriptions.</h3>
-                <p data-i18n="why_2_desc">Security shouldn't be a monthly rental. Pay $15 once and get a lifetime
-                    license for both the Installable and Portable versions. End of story.</p>
+                <p data-i18n="why_2_desc">Software shouldn't be a monthly rental. Pay once and get a lifetime
+                    license. End of story.</p>
             </div>
             <div class="dark-card">
                 <h3 data-i18n="why_3_title">Transparent Implementation</h3>
-                <p data-i18n="why_3_desc">No invasive kernel drivers slowing down your PC. IronLock Vault uses AES-256
-                    encryption and native Windows permissions to guarantee unbreakable protection without harming your
-                    OS.</p>
+                <p data-i18n="why_3_desc">No invasive kernel drivers slowing down your PC. We use native Windows permissions to guarantee unbreakable protection and optimization without harming your OS.</p>
             </div>
         </div>
 
-        <!-- Potentes Funciones de Seguridad (Incluyendo PRO) -->
-        <h2 class="section-title" data-i18n="feat_main_title">Powerful security features</h2>
+        <h2 class="section-title" data-i18n="feat_main_title">Vault Security Features</h2>
         <div class="grid-3">
             <div class="dark-card">
                 <h3 data-i18n="feat_1_title">Protected Folders</h3>
@@ -486,7 +564,7 @@
                 <p data-i18n="feat_6_desc">Manage and protect your passwords, bank cards, and secret notes directly
                     inside your encrypted vault, isolated from traditional password managers.</p>
             </div>
-            <!-- NUEVAS FUNCIONES PRO -->
+            
             <div class="dark-card pro-card">
                 <h3 data-i18n="feat_7_title">★ Anti-Sabotage System (PRO)</h3>
                 <p data-i18n="feat_7_desc">Advanced anti-debugging defense. Automatically detects unauthorized inspection tools, purges cryptographic buffers from RAM, and terminates execution to prevent tampering.</p>
@@ -508,12 +586,12 @@
         <h2 class="section-title" data-i18n="faq_title">Frequently Asked Questions</h2>
         <div class="faq-container">
             <div class="faq-card">
-                <h3 data-i18n="faq_1_q">Do I need an internet connection to use IronLock Vault?</h3>
-                <p data-i18n="faq_1_a">Absolutely not. IronLock Vault is designed to work 100% offline. It does not require
-                    the internet to activate, lock folders, or encrypt files. Your privacy is guaranteed by design.</p>
+                <h3 data-i18n="faq_1_q">Do I need an internet connection to use IronLock?</h3>
+                <p data-i18n="faq_1_a">Absolutely not. IronLock software is designed to work 100% offline. It does not require
+                    the internet to activate or function. Your privacy is guaranteed by design.</p>
             </div>
             <div class="faq-card">
-                <h3 data-i18n="faq_2_q">What happens if I forget my master password?</h3>
+                <h3 data-i18n="faq_2_q">What happens if I forget my Vault master password?</h3>
                 <p data-i18n="faq_2_a">For your security, IronLock Vault uses real encryption with no "backdoors". If you lose
                     the master password, it is mathematically impossible to recover the encrypted data from your vault.
                 </p>
@@ -525,7 +603,7 @@
             </div>
             <div class="faq-card">
                 <h3 data-i18n="faq_4_q">Does it work on Mac or Linux?</h3>
-                <p data-i18n="faq_4_a">Currently, IronLock Vault V1.0 is designed and optimized exclusively for the Windows
+                <p data-i18n="faq_4_a">Currently, IronLock software is designed and optimized exclusively for the Windows
                     (64-bit) ecosystem, leveraging its native permission systems for maximum effectiveness.</p>
             </div>
         </div>
@@ -533,11 +611,11 @@
     </div>
 
     <div class="footer">
-        <h4 data-i18n="footer_title">About IronLock Vault</h4>
+        <h4 data-i18n="footer_title">About IronLock</h4>
         <p data-i18n="footer_desc">We are an independent software development studio focused on creating zero-knowledge
             privacy tools and 100% offline security for Windows users.</p>
         <div class="contact">✉ Contacto y Soporte: contacto.kineticshield@gmail.com</div>
-        <div class="copyright" data-i18n="copyright">© 2026 IronLock Vault. All rights reserved.</div>
+        <div class="copyright" data-i18n="copyright">© 2026 IronLock. All rights reserved.</div>
     </div>
 
     <script>
@@ -561,13 +639,24 @@
                 purchase_pro_btn: "Adquirir Licencia PRO",
                 pro_badge: "MÁS POPULAR / SEGURIDAD MÁXIMA",
                 purchase_req: "* Compatible con Windows 10 y 11 (64 bits). Entrega digital inmediata.",
-                why_title: "¿Por qué elegir IronLock Vault?",
+                
+                /* TRADUCCIONES NUEVAS PARA OPTIMIZER */
+                opt_main_desc: "Maximiza el rendimiento de tu PC de forma segura. IronLock Optimizer limpia archivos basura, optimiza el registro y acelera tu sistema manteniendo nuestro estricto estándar de privacidad 100% offline.",
+                opt_badge: "NUEVO LANZAMIENTO",
+                opt_purchase_desc: "Dale una nueva vida a tu sistema. Obtén la herramienta de optimización definitiva diseñada para velocidad, estabilidad y privacidad total sin telemetría.",
+                opt_purchase_btn: "Adquirir Licencia Optimizer",
+                opt_f1: "⚡ Limpieza profunda de archivos basura",
+                opt_f2: "⚡ Optimización de registro segura",
+                opt_f3: "⚡ Gestor de inicio y procesos",
+                opt_f4: "⚡ 100% Privado sin telemetría",
+
+                why_title: "¿Por qué elegir IronLock?",
                 why_1_title: "Aislamiento Total (Zero-Cloud)",
-                why_1_desc: "A diferencia de la competencia, IronLock Vault no se conecta a internet. No hay \"copias automáticas en la nube\" que puedan ser hackeadas, ni telemetría. Tus datos nunca abandonan tu disco duro.",
+                why_1_desc: "A diferencia de la competencia, el software de IronLock no se conecta a internet. No hay \"copias automáticas en la nube\" que puedan ser hackeadas, ni telemetría. Tus datos nunca abandonan tu disco duro.",
                 why_2_title: "Pago Único. Sin Suscripciones.",
-                why_2_desc: "La seguridad no debería ser un alquiler mensual. Haz un pago único y obtén una licencia de por vida para la versión elegida. Fin de la historia.",
+                why_2_desc: "El software no debería ser un alquiler mensual. Haz un pago único y obtén una licencia de por vida. Fin de la historia.",
                 why_3_title: "Implementación Transparente",
-                why_3_desc: "Sin controladores de kernel invasivos que ralentizan tu PC. IronLock Vault utiliza cifrado AES-256 y permisos nativos de Windows para garantizar protección irrompible sin dañar tu sistema operativo.",
+                why_3_desc: "Sin controladores invasivos que ralentizan tu PC. Utilizamos permisos nativos de Windows para garantizar protección y optimización irrompibles sin dañar tu sistema operativo.",
                 feat_main_title: "Potentes funciones de seguridad",
                 feat_1_title: "Carpetas protegidas",
                 feat_1_desc: "Bloquea y oculta carpetas completas en tu ordenador. Ni el Explorador de Windows ni otros programas podrán acceder a ellas sin tu contraseña maestra.",
@@ -590,17 +679,17 @@
                 feat_10_title: "★ Exportador de .EXE Autónomo (PRO)",
                 feat_10_desc: "Empaqueta archivos cifrados bajo una extensión propietaria o expórtalos como un ejecutable (.exe) autónomo. Compártelos con terceros; se abren de forma segura con la clave en el receptor.",
                 faq_title: "Preguntas Frecuentes",
-                faq_1_q: "¿Necesito conexión a internet para usar IronLock Vault?",
-                faq_1_a: "Absolutamente no. IronLock Vault está diseñado para funcionar 100% offline. No requiere internet para activarse, bloquear carpetas o cifrar archivos. Tu privacidad está garantizada por diseño.",
-                faq_2_q: "¿Qué pasa si olvido mi contraseña maestra?",
+                faq_1_q: "¿Necesito conexión a internet para usar IronLock?",
+                faq_1_a: "Absolutamente no. IronLock está diseñado para funcionar 100% offline. No requiere internet para activarse. Tu privacidad está garantizada por diseño.",
+                faq_2_q: "¿Qué pasa si olvido mi contraseña maestra de Vault?",
                 faq_2_a: "Por tu seguridad, IronLock Vault utiliza cifrado real sin \"puertas traseras\". Si pierdes la contraseña maestra, es matemáticamente imposible recuperar los datos cifrados de tu bóveda.",
                 faq_3_q: "¿La licencia me obliga a pagar mensualidades después?",
                 faq_3_a: "No. Es un pago único. Con tu compra obtienes acceso perpetuo a la versión elegida sin renovaciones anuales ni cargos ocultos.",
                 faq_4_q: "¿Funciona en Mac o Linux?",
-                faq_4_a: "Actualmente, IronLock Vault V1.0 está diseñado y optimizado exclusivamente para el ecosistema Windows (64 bits), aprovechando sus sistemas de permisos nativos para máxima eficacia.",
-                footer_title: "Sobre IronLock Vault",
+                faq_4_a: "Actualmente, los programas de IronLock están diseñados y optimizados exclusivamente para el ecosistema Windows (64 bits), aprovechando sus sistemas de permisos nativos.",
+                footer_title: "Sobre IronLock",
                 footer_desc: "Somos un estudio de desarrollo de software independiente enfocado en crear herramientas de privacidad de conocimiento cero y seguridad 100% offline para usuarios de Windows.",
-                copyright: "© 2026 IronLock Vault. Todos los derechos reservados."
+                copyright: "© 2026 IronLock. Todos los derechos reservados."
             },
             en: {
                 subtitle_top: "PRIVACY FIRST. 100% OFFLINE SECURITY.",
@@ -621,14 +710,25 @@
                 purchase_pro_btn: "Acquire PRO License",
                 pro_badge: "MOST POPULAR / MAX SECURITY",
                 purchase_req: "* Compatible with Windows 10 & 11 (64-bit). Immediate digital delivery.",
-                why_title: "Why choose IronLock Vault?",
+                
+                /* TRADUCCIONES NUEVAS PARA OPTIMIZER */
+                opt_main_desc: "Maximize your PC's performance safely. IronLock Optimizer cleans junk files, optimizes your registry, and boosts your system's speed while maintaining our strict 100% offline privacy standard.",
+                opt_badge: "NEW RELEASE",
+                opt_purchase_desc: "Breathe new life into your system. Get the definitive optimization tool designed for speed, stability, and total privacy without telemetry.",
+                opt_purchase_btn: "Acquire Optimizer License",
+                opt_f1: "⚡ Deep junk file cleaning",
+                opt_f2: "⚡ Safe registry optimization",
+                opt_f3: "⚡ Startup and process manager",
+                opt_f4: "⚡ 100% Private with zero telemetry",
+
+                why_title: "Why choose IronLock?",
                 why_1_title: "Total Isolation (Zero-Cloud)",
-                why_1_desc: "Unlike the competition, IronLock Vault does not connect to the internet. There are no hackable \"automatic cloud backups\" or telemetry. Your data never leaves your hard drive.",
+                why_1_desc: "Unlike the competition, IronLock software does not connect to the internet. There are no hackable \"automatic cloud backups\" or telemetry. Your data never leaves your hard drive.",
                 why_2_title: "One-Time Payment. No Subscriptions.",
-                why_2_desc: "Security shouldn't be a monthly rental. Make a one-time payment and get a lifetime license for your chosen version. End of story.",
+                why_2_desc: "Software shouldn't be a monthly rental. Make a one-time payment and get a lifetime license. End of story.",
                 why_3_title: "Transparent Implementation",
-                why_3_desc: "No invasive kernel drivers slowing down your PC. IronLock Vault uses AES-256 encryption and native Windows permissions to guarantee unbreakable protection without harming your OS.",
-                feat_main_title: "Powerful security features",
+                why_3_desc: "No invasive kernel drivers slowing down your PC. We use native Windows permissions to guarantee unbreakable protection and optimization without harming your OS.",
+                feat_main_title: "Vault Security Features",
                 feat_1_title: "Protected Folders",
                 feat_1_desc: "Lock and hide entire folders on your computer. Neither Windows Explorer nor other programs can access them without your master password.",
                 feat_2_title: "Encrypted Vaults",
@@ -650,17 +750,17 @@
                 feat_10_title: "★ Autonomous .EXE Exporter (PRO)",
                 feat_10_desc: "Package encrypted files into proprietary formats or standalone self-decrypting executables (.exe). Share safely with third parties; they open securely with the password on the receiver's end.",
                 faq_title: "Frequently Asked Questions",
-                faq_1_q: "Do I need an internet connection to use IronLock Vault?",
-                faq_1_a: "Absolutely not. IronLock Vault is designed to work 100% offline. It does not require the internet to activate, lock folders, or encrypt files. Your privacy is guaranteed by design.",
-                faq_2_q: "What happens if I forget my master password?",
+                faq_1_q: "Do I need an internet connection to use IronLock?",
+                faq_1_a: "Absolutely not. IronLock software is designed to work 100% offline. It does not require the internet to activate. Your privacy is guaranteed by design.",
+                faq_2_q: "What happens if I forget my Vault master password?",
                 faq_2_a: "For your security, IronLock Vault uses real encryption with no \"backdoors\". If you lose the master password, it is mathematically impossible to recover the encrypted data from your vault.",
                 faq_3_q: "Does the license force me to pay monthly fees later?",
                 faq_3_a: "No. It is a one-time payment. With your purchase, you get perpetual access to your chosen version with no annual renewals or hidden fees.",
                 faq_4_q: "Does it work on Mac or Linux?",
-                faq_4_a: "Currently, IronLock Vault V1.0 is designed and optimized exclusively for the Windows (64-bit) ecosystem, leveraging its native permission systems for maximum effectiveness.",
-                footer_title: "About IronLock Vault",
+                faq_4_a: "Currently, IronLock software is designed and optimized exclusively for the Windows (64-bit) ecosystem, leveraging its native permission systems for maximum effectiveness.",
+                footer_title: "About IronLock",
                 footer_desc: "We are an independent software development studio focused on creating zero-knowledge privacy tools and 100% offline security for Windows users.",
-                copyright: "© 2026 IronLock Vault. All rights reserved."
+                copyright: "© 2026 IronLock. All rights reserved."
             }
         };
 
